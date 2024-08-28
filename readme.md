@@ -1,4 +1,24 @@
 # GenAI360 Azure향 개발지원 위한 FastAPI
+## 파일 구성
+```shell
+App/
+├── main.py
+├── routers/
+│   ├── __init__.py
+│   ├── user.py
+│   ├── item.py
+├── models/
+│   ├── __init__.py
+│   ├── user.py
+│   ├── item.py
+├── templates/
+│   ├── base.html
+│   ├── index.html
+└── static/
+    ├── css/
+    ├── js/
+```
+
 ## FastAPI Project 구성 과정
 1. fastAPI 설치
 ```shell
