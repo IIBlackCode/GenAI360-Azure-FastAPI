@@ -1,6 +1,5 @@
 # GenAI360 Azure향 개발지원
 ## 파일구성
-## 파일 구성
 ```shell
 App/
 ├── main.py
