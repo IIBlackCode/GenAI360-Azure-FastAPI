@@ -74,6 +74,7 @@ resource "azurerm_subnet" "snet-tf-prod-sql" {
         }
     }
 }
+/*
 //Private DNS Zones of MySQL Flexible Server
 resource "azurerm_private_dns_zone" "sqltf-prod" {
     name = "sqlmzc.mysql.database.azure.com"
@@ -90,7 +91,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "nwk-to-sql" {
 }
 
 //Deploy mySQL Flexible Server
-/*resource "azurerm_mysql_flexible_server" "sql-tf-prod-rds-01" {
+resource "azurerm_mysql_flexible_server" "sql-tf-prod-rds-01" {
     name = "sql-mzc-prod-rds-01"
     resource_group_name = azurerm_resource_group.rg-tf-prod-nwk.name
     location = azurerm_resource_group.rg-tf-prod-nwk.location
