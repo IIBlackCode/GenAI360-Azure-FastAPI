@@ -44,12 +44,19 @@
             {% if submenu == 'open ai' %}
             <li class="active"><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
             <li><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
+            <li><a href="/azure-ai-search"><i class="fa fa-circle-o"></i> Azure AI Search</a></li>
             {% elif submenu == 'azure open ai' %}
             <li><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
             <li class="active"><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
+            <li><a href="/azure-ai-search"><i class="fa fa-circle-o"></i> Azure AI Search</a></li>
+            {% elif submenu == 'azure ai search' %}
+            <li><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
+            <li><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
+            <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Azure AI Search</a></li>
             {% else %}
             <li><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
             <li><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
+            <li><a href="/azure-ai-search"><i class="fa fa-circle-o"></i> Azure AI Search</a></li>
             {% endif %}
           </ul>
         </li>

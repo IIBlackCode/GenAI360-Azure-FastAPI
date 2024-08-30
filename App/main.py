@@ -38,6 +38,17 @@ def index(request: Request):
                                           "subtitle" : "Azure Open AI"
                                           })
 
+@app.get("/azure-ai-search", response_class=HTMLResponse)
+def index(request: Request):
+    return templates.TemplateResponse(name="App/ai/02-azure-open-ai.html", 
+                                      context={
+                                          "request": request, 
+                                          "category": "AI", 
+                                          "submenu":"azure ai search",
+                                          "title": "AI", 
+                                          "subtitle" : "Azure AI Search"
+                                          })
+
 # --------------------------------------------- #
 
 @app.get("/base", response_class=HTMLResponse)

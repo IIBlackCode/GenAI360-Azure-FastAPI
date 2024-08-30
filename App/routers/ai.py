@@ -9,6 +9,12 @@ from ai.Azure import Gpt4omini, Gpt4o
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
 
+@router.get("/tset/{question}")
+def test(question: str):
+    # result = OpenAI.chatgpt(question)
+    result = ''
+    return {"message": result}
+
 @router.get("/openai/{question}")
 def test(question: str):
     result = OpenAI.chatgpt(question)
