@@ -51,7 +51,16 @@ pip install jinja2
 ```shell
 pip install langchain
 pip install openai
+pip install langchain-openai
 ```
+
+6. Azure
+```shell
+pip install azure
+pip install azure-ai-openai
+```
+
+7. 
 
 ## FastAPI 실행
 ```shell

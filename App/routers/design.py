@@ -7,10 +7,6 @@ from fastapi import APIRouter
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
 
-@router.get("/test")
-def hello():
-    return {"message": "FastAPI Test Page"}
-
 @router.get("/theme/base", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse(name="theme/base.html", context={"request": request, "title": "test"})

@@ -2,7 +2,9 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from typing import Optional
 from routers import design
+from ai import OpenAI, AzureOpenAI, Gpt4omini
 
 app = FastAPI()
 
@@ -13,9 +15,14 @@ app.include_router(design.router)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-@app.get("/test")
-def hello():
-    return {"message": "FastAPI Test Page"}
+@app.get("/test/{question}")
+def test(question: str):
+    # result = LLM01.OpenAPI(question)
+    # result = AzureOpenAI.gpt4omini(question)
+    result = Gpt4omini.run(question)
+    return {"message": result}
+
+# --------------------------------------------- #
 
 @app.get("/base", response_class=HTMLResponse)
 def index(request: Request):
