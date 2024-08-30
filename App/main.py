@@ -17,6 +17,17 @@ app.include_router(ai.router)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
+@app.get("/api-test", response_class=HTMLResponse)
+def index(request: Request):
+    return templates.TemplateResponse(name="App/ai/00-api-test.html", 
+                                      context={
+                                          "request": request, 
+                                          "category": "AI", 
+                                          "submenu":"api test",
+                                          "title": "AI", 
+                                          "subtitle" : "API TEST"
+                                          })
+
 @app.get("/open-ai", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse(name="App/ai/01-open-ai.html", 
@@ -27,6 +38,7 @@ def index(request: Request):
                                           "title": "AI", 
                                           "subtitle" : "Open AI"
                                           })
+
 @app.get("/azure-open-ai", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse(name="App/ai/02-azure-open-ai.html", 

@@ -2,6 +2,7 @@
 import os
 from langchain_openai import OpenAI
 
+global OPENAI_API_KEY
 
 def chatgpt(question):
     #OPENAI API키 저장
@@ -11,7 +12,35 @@ def chatgpt(question):
     result = llm.invoke(question)
     return result
 
-# def test2(question):
-#     llm = OpenAI()
-#     result = llm.invoke(question)
-#     return result
+def apitest(question):
+    global OPENAI_API_KEY
+
+    #OPENAI API키 저장
+    # os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+    print(OPENAI_API_KEY)
+    llm = OpenAI()
+    result = llm.invoke(question)
+    return result
+
+def apikey(key):
+    global OPENAI_API_KEY
+    print(key)
+    try:
+        # Set the API key
+        OPENAI_API_KEY = key
+        os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+        # Initialize the OpenAI object
+        llm = OpenAI()
+        
+        # Invoke the method
+        llm.invoke("ready?")
+        # Return the result if everything is successful
+        return {"result": "승인"}
+        
+    except KeyError as e:
+        # Handle cases where environment variable is not set
+        return {"error": f"KeyError: {str(e)} - The API key was not set correctly."}
+        
+    # except Exception as e:
+    #     # Handle any other exceptions
+    #     return {"error": f"An error occurred: {str(e)}"}

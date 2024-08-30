@@ -5,6 +5,15 @@
 {% block content %}
     <!-- Main content -->
     <section class="content">
+
+      <!-- HTML Structure -->
+      <div class="input-group input-group-sm">
+        <input type="text" id="key-input" class="form-control" placeholder="Enter key">
+        <span class="input-group-btn">
+            <button id="go-button" type="button" class="btn btn-info btn-flat">Go!</button>
+        </span>
+      </div>
+
       <!-- Direct Chat -->
       <div class="row">
         <div class="col-md-12">
@@ -94,7 +103,7 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;  // 스크롤을 최신 메시지로 이동
 
             // AJAX 요청을 통해 서버로 메시지 전송
-            fetch(`/openai/${encodeURIComponent(message)}`)
+            fetch(`/apitest/${encodeURIComponent(message)}`)
                 .then(response => response.json())
                 .then(data => {
                     // 서버에서 받은 ChatGPT의 응답을 채팅창에 추가
@@ -117,5 +126,37 @@
             messageInput.value = '';
         });
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('go-button').addEventListener('click', function() {
+            var keyInput = document.getElementById('key-input');
+            var key = keyInput.value;
+
+            if (!key.trim()) {
+                alert("Please enter a key.");
+                return; // 빈 입력 방지
+            }
+
+            // AJAX 요청을 통해 서버로 key 전송
+            fetch(`/key/${encodeURIComponent(key)}`)
+                .then(response => response.json())
+                .then(data => {
+                    // 서버에서 받은 응답 처리
+                    console.log("Server response:", data);
+
+                    // 응답을 사용자에게 표시 (예시로 alert 사용)
+                    alert(`Server response: ${data.result}`);
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("An error occurred while processing your request.");
+                });
+
+            // 입력 필드 초기화
+            keyInput.value = '';
+        });
+    });
 </script>
+
+
 {% endblock %}

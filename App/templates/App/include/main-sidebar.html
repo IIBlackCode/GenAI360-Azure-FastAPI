@@ -41,19 +41,28 @@
           </a>
 
           <ul class="treeview-menu">
-            {% if submenu == 'open ai' %}
+            {% if submenu == 'api test' %}
+            <li class="active"><a href="/api-test"><i class="fa fa-circle-o"></i> API TEST</a></li>
+            <li><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
+            <li><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
+            <li><a href="/azure-ai-search"><i class="fa fa-circle-o"></i> Azure AI Search</a></li>
+            {% elif submenu == 'open ai' %}
+            <li><a href="/api-test"><i class="fa fa-circle-o"></i> API TEST</a></li>
             <li class="active"><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
             <li><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
             <li><a href="/azure-ai-search"><i class="fa fa-circle-o"></i> Azure AI Search</a></li>
             {% elif submenu == 'azure open ai' %}
+            <li><a href="/api-test"><i class="fa fa-circle-o"></i> API TEST</a></li>
             <li><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
             <li class="active"><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
             <li><a href="/azure-ai-search"><i class="fa fa-circle-o"></i> Azure AI Search</a></li>
             {% elif submenu == 'azure ai search' %}
+            <li><a href="/api-test"><i class="fa fa-circle-o"></i> API TEST</a></li>
             <li><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
             <li><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
             <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Azure AI Search</a></li>
             {% else %}
+            <li><a href="/api-test"><i class="fa fa-circle-o"></i> API TEST</a></li>
             <li><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
             <li><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
             <li><a href="/azure-ai-search"><i class="fa fa-circle-o"></i> Azure AI Search</a></li>

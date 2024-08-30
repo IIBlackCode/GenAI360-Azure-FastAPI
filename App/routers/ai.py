@@ -15,6 +15,16 @@ def test(question: str):
     result = ''
     return {"message": result}
 
+@router.get("/key/{key}")
+def key(key: str):
+    result = OpenAI.apikey(key)
+    return {"result": result}
+
+@router.get("/apitest/{question}")
+def test(question: str):
+    result = OpenAI.apitest(question)
+    return {"message": result}
+
 @router.get("/openai/{question}")
 def test(question: str):
     result = OpenAI.chatgpt(question)
