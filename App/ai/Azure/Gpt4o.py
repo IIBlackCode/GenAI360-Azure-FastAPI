@@ -1,7 +1,6 @@
 import os
 import requests
 import base64
-
 def run(question):
     # Configuration
     API_KEY = "d800d93e9142483e8bf232565ca15147"
@@ -11,32 +10,15 @@ def run(question):
     }
 
     # Payload for the request
+    # Payload for the request
     payload = {
     "messages": [
-        {
-        "role": "system",
-        "content": [
-            {
-            "type": "text",
-            "text": "You are an AI assistant that helps people find information."
-            }
-        ]
-        },
         {
         "role": "user",
         "content": [
             {
             "type": "text",
             "text": question
-            }
-        ]
-        },
-        {
-        "role": "assistant",
-        "content": [
-            {
-            "type": "text",
-            "text": ""
             }
         ]
         }
@@ -46,7 +28,7 @@ def run(question):
     "max_tokens": 800
     }
 
-    ENDPOINT = "https://kms-genai360-openai.openai.azure.com/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-02-15-preview"
+    ENDPOINT = "https://kms-genai360-openai.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview"
 
     # Send request
     try:

@@ -71,9 +71,9 @@ uvicorn theme:app --reload
 ```
 
 * 추가사항(Azure OpenAI)
-기능개발 후 버튼을 통해 선택할 수 있도록
-GPT4o       : 높은 지능이 필요한 경우 선택
-GPT4oMini   : 개발진행
+- 모델을 선택하는 기능 추가
+    - GPT4o       : 높은 지능이 필요한 경우 선택
+    - GPT4oMini   : 개발진행
 
 
 

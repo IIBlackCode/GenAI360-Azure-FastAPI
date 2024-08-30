@@ -26,6 +26,34 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
+        
+        {% if category == 'AI' %}
+        <li class="active treeview">
+        {% else %}
+        <li class="treeview">
+        {% endif %}
+
+          <a href="#">
+            <i class="fa fa-commenting"></i> <span>AI</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+
+          <ul class="treeview-menu">
+            {% if submenu == 'open ai' %}
+            <li class="active"><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
+            <li><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
+            {% elif submenu == 'azure open ai' %}
+            <li><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
+            <li class="active"><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
+            {% else %}
+            <li><a href="/open-ai"><i class="fa fa-circle-o"></i> Open AI</a></li>
+            <li><a href="/azure-open-ai"><i class="fa fa-circle-o"></i> Azure Open AI</a></li>
+            {% endif %}
+          </ul>
+        </li>
+
         {% if title == 'Dashboard' or title == 'Dashboard2' %}
         <li class="active treeview">
         {% else %}
