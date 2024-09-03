@@ -3,7 +3,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import Optional
-from routers import design, ai
+from routers import design, ai, storage
 from ai import OpenAI, AzureOpenAI
 from ai.Azure import Gpt4omini, Gpt4o
 
@@ -12,6 +12,7 @@ app = FastAPI()
 # Router 등록
 app.include_router(design.router)
 app.include_router(ai.router)
+app.include_router(storage.router)
 
 # 정적파일 등록
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -52,7 +53,7 @@ def index(request: Request):
 
 @app.get("/azure-ai-search", response_class=HTMLResponse)
 def index(request: Request):
-    return templates.TemplateResponse(name="App/ai/02-azure-open-ai.html", 
+    return templates.TemplateResponse(name="App/ai/03-azure-ai-search.html", 
                                       context={
                                           "request": request, 
                                           "category": "AI", 

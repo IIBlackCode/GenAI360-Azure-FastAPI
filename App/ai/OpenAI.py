@@ -15,13 +15,15 @@ def chatgpt(question):
 def apitest(question):
     global OPENAI_API_KEY
 
-    #OPENAI API키 저장
-    # os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
-    print(OPENAI_API_KEY)
-    llm = OpenAI()
-    result = llm.invoke(question)
-    return result
-
+    try:
+        print(OPENAI_API_KEY)
+        llm = OpenAI()
+        result = llm.invoke(question)
+        return result
+    except KeyError as e:
+        # Handle cases where environment variable is not set
+        return {"error": f"KeyError: {str(e)} - The API key was not set correctly."}
+    
 def apikey(key):
     global OPENAI_API_KEY
     print(key)

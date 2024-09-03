@@ -58,24 +58,30 @@ pip install langchain-openai
 ```shell
 pip install azure
 pip install azure-ai-openai
+pip install azure-storage-blob 
+# pip install python-dotenv
+
 ```
 
-7. 
+7. 파일업로드
+```shell
+pip install python-multipart
+```
+
+8. 
 
 ## FastAPI 실행
 ```shell
 # Dev
 uvicorn main:app --reload
-# Web Publishing
-uvicorn theme:app --reload
 ```
 
 * 추가사항(Azure OpenAI)
 - 모델을 선택하는 기능 추가
-    - GPT4o       : 높은 지능이 필요한 경우 선택
-    - GPT4oMini   : 개발진행
-
-
+    - GPT4o                 : 높은 지능이 필요한 경우 선택
+    - GPT4oMini             : 개발진행
+    - AI Search(Vector DB)  : 연동 및 개발, 질문 대비를 위한 세부옵션 스터디
+    - FastAPI with Azure blob Storage 연동 및 개발
 
 - Embedding model
     - small
