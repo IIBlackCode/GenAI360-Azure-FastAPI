@@ -124,8 +124,72 @@
       <!--/.direct-chat -->
     </div>
   </div>
+
+
+  <!-- Direct Chat GPT-4o-Add Data -->
+  <div class="row">
+    <div class="col-md-12">
+      <!-- DIRECT CHAT PRIMARY -->
+      <div class="box box-primary direct-chat direct-chat-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Azure Open AI gpt4o-Add Data</h3>
+
+          <div class="box-tools pull-right">
+            <span data-toggle="tooltip" title="3 New Messages" class="badge bg-light-blue">3</span>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Contacts" data-widget="chat-pane-toggle">
+              <i class="fa fa-comments"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- Conversations are loaded here -->
+          <div id="gpt4o-adddata-messages" class="direct-chat-messages">
+          </div>
+          <!--/.direct-chat-messages-->
+
+          <!-- Contacts are loaded here -->
+          <div class="direct-chat-contacts">
+            <ul class="contacts-list">
+              <li>
+                <a href="#">
+                  <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image">
+                  <div class="contacts-list-info">
+                    <span class="contacts-list-name">
+                      Count Dracula
+                      <small class="contacts-list-date pull-right">2/28/2015</small>
+                    </span>
+                    <span class="contacts-list-msg">How have you been? I was...</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- /.direct-chat-pane -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <form id="chat-form-gpt4o-adddata" action="#" method="get">
+            <div class="input-group">
+              <input type="text" name="message-gpt4o-adddata" placeholder="Type Message ..." class="form-control">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary btn-flat">Send</button>
+              </span>
+            </div>
+          </form>
+        </div>
+        <!-- /.box-footer-->
+      </div>
+      <!--/.direct-chat -->
+    </div>
+  </div>
+
 </section>
 <!-- /.content -->
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('chat-form-gpt4o').addEventListener('submit', function(e) {
@@ -199,6 +263,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // AJAX 요청을 통해 서버로 메시지 전송
         fetch(`/gpt4omini/${encodeURIComponent(message)}`)
+            .then(response => response.json())
+            .then(data => {
+                // 서버에서 받은 ChatGPT의 응답을 채팅창에 추가
+                chatMessages.innerHTML += `
+                    <div class="direct-chat-msg">
+                        <div class="direct-chat-info clearfix">
+                            <span class="direct-chat-name pull-left">ChatGPT</span>
+                            <span class="direct-chat-timestamp pull-right">${new Date().toLocaleString()}</span>
+                        </div>
+                        <div class="direct-chat-text">
+                            ${data.message}
+                        </div>
+                    </div>
+                `;
+                chatMessages.scrollTop = chatMessages.scrollHeight;  // 스크롤을 최신 메시지로 이동
+            });
+
+        // 입력 필드 초기화
+        messageInput.value = '';
+    });
+
+    document.getElementById('chat-form-gpt4o-adddata').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        var messageInput = document.querySelector('input[name="message-gpt4o-adddata"]');
+        var message = messageInput.value;
+
+        if (!message.trim()) return;  // 빈 메시지 전송 방지
+
+        // GPT-4o-mini 채팅창에 사용자의 메시지 추가
+        var chatMessages = document.getElementById('gpt4o-adddata-messages');
+        chatMessages.innerHTML += `
+            <div class="direct-chat-msg right">
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-name pull-right">ME</span>
+                    <span class="direct-chat-timestamp pull-left">${new Date().toLocaleString()}</span>
+                </div>
+                <div class="direct-chat-text">
+                    ${message}
+                </div>
+            </div>
+        `;
+        chatMessages.scrollTop = chatMessages.scrollHeight;  // 스크롤을 최신 메시지로 이동
+
+        // AJAX 요청을 통해 서버로 메시지 전송
+        fetch(`/gpt4o_addData/${encodeURIComponent(message)}`)
             .then(response => response.json())
             .then(data => {
                 // 서버에서 받은 ChatGPT의 응답을 채팅창에 추가

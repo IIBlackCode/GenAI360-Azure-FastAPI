@@ -10,7 +10,6 @@ def run(question):
     }
 
     # Payload for the request
-    # Payload for the request
     payload = {
     "messages": [
         {

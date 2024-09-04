@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi import APIRouter
 from ai import OpenAI
-from ai.Azure import Gpt4omini, Gpt4o
+from ai.Azure import Gpt4omini, Gpt4o, Gpt4o_addData
 
 templates = Jinja2Templates(directory="templates")
 router = APIRouter()
@@ -38,4 +38,9 @@ def gpt4o(question: str):
 @router.get("/gpt4omini/{question}")
 def gpt4omini(question: str):
     result = Gpt4omini.run(question)
+    return {"message": result}
+
+@router.get("/gpt4o_addData/{question}")
+def gpt4o(question: str):
+    result = Gpt4o_addData.run(question)
     return {"message": result}

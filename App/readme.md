@@ -60,6 +60,7 @@ pip install azure
 pip install azure-ai-openai
 pip install azure-storage-blob 
 # pip install python-dotenv
+pip install azure-identity 
 
 ```
 
@@ -86,3 +87,27 @@ uvicorn main:app --reload
 - Embedding model
     - small
     - large
+
+# FastAPI 배포
+## 1. python 설치
+```shell
+sudo apt-get update
+sudo apt-get install python3.12
+sudo apt-get install python3-venv
+
+# python 버전 확인
+python3 --version
+Python 3.8.10
+```
+
+```shell
+```
+
+```shell
+```
+
+```shell
+```
+
+```shell
+```
