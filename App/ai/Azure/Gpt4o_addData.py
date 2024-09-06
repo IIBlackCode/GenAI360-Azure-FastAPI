@@ -2,26 +2,40 @@ import os
 import requests
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+from azure.core.credentials import AzureKeyCredential
 def run(question):
 
+    # endpoint = os.getenv("ENDPOINT_URL", "https://kms-genai360-openai.openai.azure.com/")
+    # deployment = os.getenv("DEPLOYMENT_NAME", "gpt-4o-mini")
+    # search_endpoint = os.getenv("SEARCH_ENDPOINT", "https://kms-genai360-aisearch.search.windows.net")
+    # search_key = os.getenv("SEARCH_KEY", "JZkLhXMpQ2M2WBO3gpYLny8GRzOVLAw6zuISkruRbrAzSeCf7rC6")
+    # search_index = os.getenv("SEARCH_INDEX_NAME", "kms-vevtor-embedded")
+
     endpoint = "https://kms-genai360-openai.openai.azure.com/"  
-    deployment = "gpt-4o"  
-    search_endpoint = "https://search-mzc-prod-search-01.search.windows.net"  
-    search_key = "H2Qt1LsqCThh0sfpkdkfsCcIba4AY8yXinZeOQZyIhAzSeB69pio"  
-    search_index = "vector-prefix-1234" 
+    deployment = "gpt-4o-mini"
+    search_endpoint = "https://kms-genai360-aisearch.search.windows.net"  
+    search_key = "JZkLhXMpQ2M2WBO3gpYLny8GRzOVLAw6zuISkruRbrAzSeCf7rC6"
+    search_index = "kms-vevtor-embedded" 
+
+    print("2024-09-05")
+
+    # credential = AzureKeyCredential(search_key)
 
     try:
+        print(DefaultAzureCredential())
         token_provider = get_bearer_token_provider(
             DefaultAzureCredential(),
             "https://cognitiveservices.azure.com/.default")
-        print(token_provider)
+        
+        # Azure Open AI Client
         client = AzureOpenAI(
             azure_endpoint="https://kms-genai360-openai.openai.azure.com/",
             azure_ad_token_provider=token_provider,
             api_version="2024-05-01-preview",
         )
-            
-        print(client)
+        
+        # search_client = SearchClient(search_endpoint, search_index, AzureKeyCredential(search_key))
+
         completion = client.chat.completions.create(  
             model=deployment,  
             messages=[  
@@ -44,7 +58,7 @@ def run(question):
                         "endpoint": search_endpoint,  
                         "index_name": search_index,  
                         "semantic_configuration": "vector-prefix-1234-semantic-configuration",  
-                        "query_type": "semantic",  
+                        "query_type": "semantic", # simple:키워드 
                         "fields_mapping": {},  
                         "in_scope": True,  
                         "role_information": "You are an AI assistant that helps people find information.",  
@@ -53,7 +67,7 @@ def run(question):
                         "top_n_documents": 5,  
                         "authentication": {  
                             "type": "api_key",  
-                            "key": search_key  
+                            "key": search_key
                         }  
                     }  
                 }]  
